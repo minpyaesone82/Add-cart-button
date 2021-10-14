@@ -1,15 +1,10 @@
-const button = document.getElementById('button');
-const cart = document.getElementById('cart');
-const text = document.getElementById('text');
+const cartButtons = document.querySelectorAll('.cart-button');
 
-button.onclick = function() {
-  if (!document.getElementsByClassName('cartAnimation').length) {
-    cart.classList.add('cartAnimation');
-    text.classList.add('textAnimation');
-    button.classList.add('buttonAnimation');
-  } else {
-    cart.classList.remove('cartAnimation');
-    text.classList.remove('textAnimation');
-    button.classList.remove('buttonAnimation');
-  }
+cartButtons.forEach(button => {
+	button.addEventListener('click', cartClick);
+});
+
+function cartClick() {
+	let button = this;
+	button.classList.add('clicked');
 }

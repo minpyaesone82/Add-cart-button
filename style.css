@@ -1,185 +1,124 @@
 body {
-    height: 100vh;
-    width: 100vw;
-    background-color: #A265CD;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  @keyframes moveButton {
-    50% {
-      width: 370px;
-    }
-    100% {
-      width: 400px;
-    }
-  }
-  
-  .button {
-    position: relative;
-    height: 100px;
-    width: 400px;
-    border-radius: 50px;
-    background-color: #8B3FC0;
-    border: none;
-    outline: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer; 
-    overflow: hidden;
-  }
-  
-  .buttonAnimation {
-     animation: 0.6s moveButton ease-in-out 0.5s;
-  }
-  
-  @keyframes moveAdded {
-    0% {
-      visibility: visible;
-      font-size: 0px;
-    }
-    50% {
-      visibility: visible;
-      font-size: 30px;
-    }
-    100% {
-      visibility: visible;
-      font-size: 35px;
-    }
-  }
-  
-  .buttonAnimation::before {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    visibility: hidden;
-    transform: translate(-50%, -50%);
-    content: 'Added';
-    color: white;
-    text-transform: uppercase;
-    font-family: 'Noto Sans JP', sans-serif; 
-    animation: 0.6s moveAdded ease-out 0.5s;
-    animation-fill-mode: forwards;
-  }
-  
-  .cart {
-    fill: white;
-  }
-  
-  @keyframes moveCart {
-    10% {
-      transform: rotate(-15deg);
-    }
-    20% {
-      transform: rotate(-2deg) translate(30px, 0px);
-    }
-    100% {
-      transform: rotate(0deg) translate(350px, 0px);
-      visibility: hidden;
-    }
-  }
-  
-  .cartAnimation {
-    animation: 0.5s moveCart ease-in;  
-      animation-fill-mode: forwards;
-  
-  }
-  
-  .text {
-    position: relative;
-    color: white;
-    font-size: 35px;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-style: bold;
-    margin-left: 15px;
-    text-transform: uppercase;
-  }
-  
-  .text::before {
-    position: absolute;
-    content: '';
-    height: 5px;
-    width: 20px;
-    background-color: white;
-    top: 25px;
-    left : -80px;
-  }
-  
-  .text::after {
-    position: absolute;
-    content: '';
-    height: 5px;
-    width: 20px;
-    background-color: white;
-    top: 25px;
-    left : -80px;
-    transform: rotate(90deg);
-  }
-  
-  @keyframes moveText {
-    10% {
-      transform: translate(0,0);
-    }
-    100% {
-      transform: translate(350px, 0px);
-      visibility: hidden;
-    }
-  }
-  
-  .textAnimation {
-    animation: 0.5s moveText ease-in;
-      animation-fill-mode: forwards;
-  
-  }
-  
-  @keyframes moveFirstSign {
-    5% {
-      top: 15px;
-    }
-    60% {
-      left: -200px;
-      width: 100px;
-    }
-    100% {
-      top: 15px;
-      left: -280px;
-      width: 200px;
-      visibility: hidden;
-    }
-  }
-  
-  .textAnimation::before {
-    animation: 0.5s moveFirstSign ease-in;
-      animation-fill-mode: forwards;
-  
-  }
-  
-  @keyframes moveSecondSign {
-    5% {
-      transform: rotate(180deg);
-      top: 30px;
-      left: -75px;
-    }
-    60% {
-      transform: rotate(180deg);
-      left: -155px;
-      top: 30px;
-      width: 80px;
-    }
-    100% {
-      width: 170px;
-      top: 30px;
-      left: -245px;
-      transform: rotate(180deg);
-      visibility: hidden;
-    }
-  }
-  
-  .textAnimation::after {
-    animation: 0.5s moveSecondSign ease-in;
-      animation-fill-mode: forwards;
-  
-  }
-  
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #ebe8ff;
+}
+
+.cart-button {
+	position: relative;
+	padding: 10px;
+	width: 200px;
+	height: 60px;
+	border: 0;
+	border-radius: 10px;
+	background-color: #4834d4;
+	outline: none;
+	cursor: pointer;
+	color: #fff;
+	transition: .3s ease-in-out;
+	overflow: hidden;
+}
+.cart-button:hover {
+	background-color: #35269b;
+}
+.cart-button:active {
+	transform: scale(.9);
+}
+
+.cart-button .fa-shopping-cart {
+	position: absolute;
+	z-index: 2;
+	top: 50%;
+	left: -10%;
+	font-size: 2em;
+	transform: translate(-50%,-50%);
+}
+.cart-button .fa-box {
+	position: absolute;
+	z-index: 3;
+	top: -20%;
+	left: 52%;
+	font-size: 1.2em;
+	transform: translate(-50%,-50%);
+}
+.cart-button span {
+	position: absolute;
+	z-index: 3;
+	left: 50%;
+	top: 50%;
+	font-size: 1.2em;
+	color: #fff;
+	transform: translate(-50%,-50%);
+}
+.cart-button span.add-to-cart {
+	opacity: 1;
+}
+.cart-button span.added {
+	opacity: 0;
+}
+
+.cart-button.clicked .fa-shopping-cart {
+	animation: cart 1.5s ease-in-out forwards;
+}
+.cart-button.clicked .fa-box {
+	animation: box 1.5s ease-in-out forwards;
+}
+.cart-button.clicked span.add-to-cart {
+	animation: txt1 1.5s ease-in-out forwards;
+}
+.cart-button.clicked span.added {
+	animation: txt2 1.5s ease-in-out forwards;
+}
+@keyframes cart {
+	0% {
+		left: -10%;
+	}
+	40%, 60% {
+		left: 50%;
+	}
+	100% {
+		left: 110%;
+	}
+}
+@keyframes box {
+	0%, 40% {
+		top: -20%;
+	}
+	60% {
+		top: 40%;
+		left: 52%;
+	}
+	100% {
+		top: 40%;
+		left: 112%;
+	}
+}
+@keyframes txt1 {
+	0% {
+		opacity: 1;
+	}
+	20%, 100% {
+		opacity: 0;
+	}
+}
+@keyframes txt2 {
+	0%, 80% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.youtube-link {
+	position: fixed;
+	left: 20px;
+	bottom: 20px;
+	color: #000;
+	text-decoration: none;
+	font-size: 12px;
+}
